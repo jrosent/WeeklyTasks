@@ -4,6 +4,8 @@ import javax.swing.*;
 import javax.swing.border.BevelBorder;
 import javax.swing.border.Border;
 import javax.swing.border.EtchedBorder;
+import javax.swing.table.DefaultTableModel;
+import javax.swing.table.TableColumn;
 import java.awt.*;
 import java.awt.event.*;
 
@@ -18,6 +20,11 @@ public class Layout {
     private JPanel taskArea;
     private JPanel completedArea;
     private JPanel inProgress;
+
+    //Table
+    JTable todoTable;
+    JTable inProgressTable;
+    JTable completedTable;
 
     //Labels and Text
     private JLabel label;
@@ -52,7 +59,6 @@ public class Layout {
         center = new JPanel();
         taskArea = new JPanel();
         completedArea = new JPanel();
-        inProgress = new JPanel();
 
         //Labels and Text
         label = new JLabel("Hello");
@@ -100,38 +106,69 @@ public class Layout {
         taskComplete.setFont(new Font("Cambria", Font.BOLD,20));
         cp.add(taskComplete,BorderLayout.SOUTH);
 
+        //Add Tables to center panels
+        String[] columns = {"Task Number","Task", "Due Date"};
+        Object[][] tasks = {{"1","Do homework", "1/24/22"},{"2","Don't homework","12/25/22"},
+                {"3","Tell Justin he's dumb", "12/16/22"}};
+        todoTable = new JTable(tasks,columns);
+        completedTable = new JTable(tasks,columns);
+        TableColumn taskColumn0 = todoTable.getColumnModel().getColumn(0);
+        TableColumn taskColumn = todoTable.getColumnModel().getColumn(1);
+        TableColumn taskColumn2 = todoTable.getColumnModel().getColumn(2);
+        TableColumn completeColumn0 = completedTable.getColumnModel().getColumn(0);
+        TableColumn completeColumn = completedTable.getColumnModel().getColumn(1);
+        TableColumn completeColumn2 = completedTable.getColumnModel().getColumn(2);
+        taskColumn0.setPreferredWidth(5);
+        taskColumn.setPreferredWidth(200);
+        taskColumn2.setPreferredWidth(25);
+        completeColumn0.setPreferredWidth(5);
+        completeColumn.setPreferredWidth(200);
+        completeColumn2.setPreferredWidth(25);
+        JScrollPane toDoPane = new JScrollPane(todoTable);
+        JScrollPane completedPane = new JScrollPane(completedTable);
+        todoTable.setFillsViewportHeight(true);
+        completedTable.setFillsViewportHeight(true);
+        taskArea.setLayout(new GridBagLayout());
+        completedArea.setLayout(new GridBagLayout());
+        JLabel label1 = new JLabel("First Task List");
+        JLabel label2 = new JLabel("First Task List");
+        label1.setFont(new Font("Veranda", Font.BOLD,20));
+        label2.setFont(new Font("Veranda", Font.BOLD,20));
+        GridBagConstraints ta = new GridBagConstraints();
+        ta = setGridBagConstraints(1,1,0,0,GridBagConstraints.NONE,
+                GridBagConstraints.SOUTHWEST);
+        taskArea.add(label1,ta);
+        completedArea.add(label2,ta);
+        ta = setGridBagConstraints(10,10,0,1,GridBagConstraints.BOTH,
+                GridBagConstraints.NORTH);
+        taskArea.add(toDoPane,ta);
+        completedArea.add(completedPane,ta);
+
+
         //Set up center of the frame
-        taskArea.setBorder(BorderFactory.createBevelBorder(1));
-        taskArea.setBackground(Color.CYAN);
-        completedArea.setBorder(BorderFactory.createLineBorder(Color.red));
-        completedArea.setBackground(Color.gray);
-        inProgress.setBorder(BorderFactory.createLineBorder(Color.yellow));
-        inProgress.setBackground(Color.BLACK);
+        taskArea.setBorder(BorderFactory.createLineBorder(Color.BLUE,3));
+        completedArea.setBorder(BorderFactory.createLineBorder(Color.red,3));
+        inProgress.setBorder(BorderFactory.createLineBorder(Color.GREEN,3));
+
 
         //---------------GRIDBAG LAYOUT-------------------
         center.setLayout(new GridBagLayout());
         GridBagConstraints gc = new GridBagConstraints();
 
-        //Set Constraints and add panels
+        //Set Constraints and add panels to center
 
         //TaskArea Panel
-        gc = setGridBagConstraints(10,1,0,0);
-        gc.fill = GridBagConstraints.BOTH;
-        gc.anchor = GridBagConstraints.WEST;
+        gc = setGridBagConstraints(1,1,0,0,GridBagConstraints.BOTH, GridBagConstraints.WEST);
         center.add(taskArea, gc);
 
-        //In Progress Panel
-        gc = setGridBagConstraints(10,1,1,0);
-        gc.fill = GridBagConstraints.BOTH;
-        gc.anchor = GridBagConstraints.CENTER;
-        center.add(inProgress, gc);
+        gc = setGridBagConstraints(.01,1,1,0,GridBagConstraints.BOTH, GridBagConstraints.CENTER);
+        center.add(Box.createHorizontalStrut(10),gc);
 
         //Completed Panel
-        gc = setGridBagConstraints(10,1,2,0);
-        gc.fill = GridBagConstraints.BOTH;
-        gc.anchor = GridBagConstraints.EAST;
+        gc = setGridBagConstraints(1,1,2,0,GridBagConstraints.BOTH,GridBagConstraints.EAST);
         center.add(completedArea,gc);
 
+        //Add center to center of content pane
         cp.add(center,BorderLayout.CENTER);
 
         //Frame defaults
@@ -139,12 +176,15 @@ public class Layout {
         frame.setVisible(true);
     }
 
-    public GridBagConstraints setGridBagConstraints(double wx, double wy, int gx, int gy){
+    public GridBagConstraints setGridBagConstraints(double wx, double wy, int gx, int gy,
+                                                    int fill, int anchor){
         GridBagConstraints gc = new GridBagConstraints();
         gc.weightx = wx;
         gc.weighty = wy;
         gc.gridx = gx;
         gc.gridy = gy;
+        gc.fill = fill;
+        gc.anchor = anchor;
 
         return gc;
     }
