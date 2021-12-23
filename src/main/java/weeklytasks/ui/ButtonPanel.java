@@ -2,8 +2,12 @@ package weeklytasks.ui;
 
 import javax.swing.*;
 import java.awt.*;
+import java.awt.event.ActionEvent;
+import java.awt.event.ActionListener;
 
 public class ButtonPanel extends JPanel{
+    private ToDoPanel todo;
+    private CompletedPanel completed;
     private JButton addCourse;
     private JButton addTask;
     private JButton editCourse;
@@ -12,8 +16,10 @@ public class ButtonPanel extends JPanel{
     private JButton removeTask;
     private JButton taskComplete;
 
-    public ButtonPanel(){
-        this.setLayout(new GridLayout(6,1));
+    public ButtonPanel(ToDoPanel todo , CompletedPanel completed){
+        this.todo = todo;
+        this.completed = completed;
+        this.setLayout(new GridLayout(2,1));
         addTask = new JButton("Add Task");
         editTask = new JButton("Edit Task");
         removeTask = new JButton("Remove Task");
@@ -23,11 +29,49 @@ public class ButtonPanel extends JPanel{
         taskComplete = new JButton("TASK COMPLETE!");
 
         this.add(addTask);
-        this.add(editTask);
-        this.add(removeTask);
+        //this.add(editTask);
+        //this.add(removeTask);
         this.add(addCourse);
-        this.add(editCourse);
-        this.add(removeCourse);
+        //this.add(editCourse);
+        //this.add(removeCourse);
     }
+
+
+    public void setButtonClick(){
+        ActionListener buttonClick = new ActionListener(){
+            @Override
+            public void actionPerformed(ActionEvent e){
+                if(e.getSource() == addTask){
+                    System.out.println("Add task clicked");
+                }
+                else if(e.getSource() == editTask){
+                    System.out.println("Edit task clicked");
+                }
+                else if(e.getSource() == removeTask){
+                    System.out.println("Remove task clicked");
+                }
+                else if(e.getSource() == addCourse){
+                    System.out.println("Add course clicked");
+                    CategoryDialog cat = new CategoryDialog(todo,completed,false);
+                    cat.buttonClick();
+                }
+                else if(e.getSource() == editCourse){
+                    System.out.println("Edit course clicked");
+                }
+                else if(e.getSource() == removeCourse){
+                    System.out.println("Remove course clicked");
+                }
+            }
+
+        };
+
+        addTask.addActionListener(buttonClick);
+        editTask.addActionListener(buttonClick);
+        removeTask.addActionListener(buttonClick);
+        addCourse.addActionListener(buttonClick);
+        editCourse.addActionListener(buttonClick);
+        removeCourse.addActionListener(buttonClick);
+    }
+
 
 }

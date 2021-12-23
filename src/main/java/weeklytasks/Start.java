@@ -1,14 +1,12 @@
 package weeklytasks;
 
-import weeklytasks.ui.Layout;
-import weeklytasks.ui.Layout2;
-
-import javax.swing.JFrame;
+import weeklytasks.ui.FrameSetUp;
+import weeklytasks.ui.TaskAreaPanel;
 
 public class Start {
 
     public static void main(String[] args){
-        Layout2 layout2 = new Layout2(1000,500);
-        layout2.setUp();
+        FrameSetUp starter = new FrameSetUp(1000,500);
+        starter.setUp();
     }
 }

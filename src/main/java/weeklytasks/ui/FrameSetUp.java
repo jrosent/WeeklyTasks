@@ -1,17 +1,15 @@
 package weeklytasks.ui;
 
 import javax.swing.*;
-import javax.swing.border.Border;
-import javax.swing.table.DefaultTableModel;
 import java.awt.*;
 
-public class Layout2 {
+public class FrameSetUp {
     //Frame
     private JFrame frame;
 
     //Panels
     private JPanel taskButtons;
-    private JPanel center;
+    private TaskAreaPanel center;
     private ToDoPanel taskArea;
     private CompletedPanel completedArea;
     private ButtonPanel buttonPanel;
@@ -28,28 +26,30 @@ public class Layout2 {
     private int width;
     private int height;
 
-    public Layout2(int w, int h){
+    public FrameSetUp(int w, int h){
 
         frame = new JFrame();
         taskButtons = new JPanel(new GridLayout(6,1));
-        center = new JPanel();
+        center = new TaskAreaPanel();
         taskArea = new ToDoPanel();
         completedArea = new CompletedPanel();
-        buttonPanel = new ButtonPanel();
+        buttonPanel = new ButtonPanel(taskArea,completedArea);
+        buttonPanel.setButtonClick();
 
         taskComplete = new JButton("TASK COMPLETE!");
 
         width = w;
         height = h;
-
         frame.setDefaultCloseOperation(WindowConstants.EXIT_ON_CLOSE);
         frame.setVisible(true);
     }
 
     public void setUp(){
+
         //Set layout for content Pane
         Container cp = frame.getContentPane();
         cp.setLayout(new BorderLayout());
+
 
         frame.setSize(width,height);
         frame.setTitle("Tasks");
@@ -64,20 +64,21 @@ public class Layout2 {
         taskComplete.setFont(new Font("Cambria", Font.BOLD,20));
         cp.add(taskComplete,BorderLayout.SOUTH);
 
+        /*
         center.setLayout(new GridBagLayout());
         GridBagSetUp gc = new GridBagSetUp();
+
         gc.setUpGridBag(1,1,0,0,GridBagSetUp.BOTH);
         center.add(taskArea,gc);
 
-        gc.setUpGridBag(.05,1,1,0,GridBagSetUp.BOTH);
+        gc.setUpGridBag(.0001,1,1,0,GridBagSetUp.BOTH);
         center.add(Box.createHorizontalStrut(10),gc);
 
         gc.setUpGridBag(1,1,2, 0,GridBagSetUp.BOTH);
         center.add(completedArea,gc);
 
+         */
 
         cp.add(center,BorderLayout.CENTER);
-
-
     }
 }
