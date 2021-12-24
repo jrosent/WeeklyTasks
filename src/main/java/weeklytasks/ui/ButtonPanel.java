@@ -6,8 +6,7 @@ import java.awt.event.ActionEvent;
 import java.awt.event.ActionListener;
 
 public class ButtonPanel extends JPanel{
-    private ToDoPanel todo;
-    private CompletedPanel completed;
+    private TaskAreaPanel taskArea;
     private JButton addCourse;
     private JButton addTask;
     private JButton editCourse;
@@ -16,9 +15,8 @@ public class ButtonPanel extends JPanel{
     private JButton removeTask;
     private JButton taskComplete;
 
-    public ButtonPanel(ToDoPanel todo , CompletedPanel completed){
-        this.todo = todo;
-        this.completed = completed;
+    public ButtonPanel(TaskAreaPanel taskArea){
+        this.taskArea = taskArea;
         this.setLayout(new GridLayout(2,1));
         addTask = new JButton("Add Task");
         editTask = new JButton("Edit Task");
@@ -52,7 +50,7 @@ public class ButtonPanel extends JPanel{
                 }
                 else if(e.getSource() == addCourse){
                     System.out.println("Add course clicked");
-                    CategoryDialog cat = new CategoryDialog(todo,completed,false);
+                    CategoryDialog cat = new CategoryDialog(taskArea,false);
                     cat.buttonClick();
                 }
                 else if(e.getSource() == editCourse){

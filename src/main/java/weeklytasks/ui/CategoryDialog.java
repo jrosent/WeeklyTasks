@@ -8,9 +8,7 @@ import java.awt.event.ActionListener;
 public class CategoryDialog extends JFrame{
 
     private boolean edit;
-    private ToDoPanel todo;
-    private CompletedPanel completed;
-
+    private TaskAreaPanel taskArea;
     private JPanel dialog;
 
     private JLabel category;
@@ -27,10 +25,9 @@ public class CategoryDialog extends JFrame{
 
     private JPanel buttonPanel;
 
-    public CategoryDialog(ToDoPanel todo, CompletedPanel completed, boolean edit){
-        this.todo = todo;
-        this.completed = completed;
+    public CategoryDialog(TaskAreaPanel taskArea, boolean edit){
         this.edit = edit;
+        this.taskArea = taskArea;
         dialog = new JPanel(new GridBagLayout());
         category = new JLabel("Name of Task Category: ");
         catName = new JTextArea("Enter the name of the new task category.");
@@ -172,15 +169,12 @@ public class CategoryDialog extends JFrame{
             public void actionPerformed(ActionEvent e) {
                 if(e.getSource() == submit) {
                     String title = catName.getText();
-                    //todo.addTaskCategory(title);
-                    todo.revalidate();
-                    //completed.addTaskCatagory(title);
-                    completed.revalidate();
+                    taskArea.addTaskCategory(title);
+                    taskArea.revalidate();
                     dispose();
                 }
                 else if(e.getSource() == remove){
-                    //todo.removeTaskCategory(0);
-                    completed.remove(0);
+
                 }
                 else{
                     dispose();

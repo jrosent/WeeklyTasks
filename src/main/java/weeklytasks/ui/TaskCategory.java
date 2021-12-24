@@ -29,7 +29,7 @@ public class TaskCategory extends JPanel {
      * Sets up the layout for a new task category with
      * a completed and to-do list
      */
-    public void setUpTaskCategory(){
+    public void setUpTaskCategory() {
 
         //Button Constraints
         int buttonX = 0;
@@ -64,26 +64,26 @@ public class TaskCategory extends JPanel {
         gc.fill = GridBagConstraints.BOTH;
         gc.anchor = GridBagConstraints.CENTER;
 
-        this.add(title,gc);
+        this.add(title, gc);
 
         //TodoPanel formatting
         gc.gridy = panelsY;
         gc.weighty = panelWeightY;
         gc.gridwidth = panelWidth;
 
-        this.add(todo,gc);
+        this.add(todo, gc);
 
         //Panel Separator formatting
         gc.gridx = panelSeparatorX;
         gc.weightx = separatorWeightX;
         gc.fill = GridBagConstraints.VERTICAL;
-        this.add(Box.createHorizontalStrut(10),gc);
+        this.add(Box.createHorizontalStrut(10), gc);
 
         //Completed panel formatting
         gc.gridx = completedX;
         gc.weightx = panelWeightX;
         gc.fill = GridBagConstraints.BOTH;
-        this.add(completed,gc);
+        this.add(completed, gc);
 
     }
 }

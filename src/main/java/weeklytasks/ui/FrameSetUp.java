@@ -33,7 +33,7 @@ public class FrameSetUp {
         center = new TaskAreaPanel();
         taskArea = new ToDoPanel();
         completedArea = new CompletedPanel();
-        buttonPanel = new ButtonPanel(taskArea,completedArea);
+        buttonPanel = new ButtonPanel(center);
         buttonPanel.setButtonClick();
 
         taskComplete = new JButton("TASK COMPLETE!");

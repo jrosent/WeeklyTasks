@@ -46,6 +46,8 @@ public class TaskTable extends JTable {
         this.getColumnModel().getColumn(2).setPreferredWidth(100);
 
         this.addTask(new Task(1, "New Task", "12/25/21"));
+        this.addTask(new Task(1, "New Task 2", "12/25/21"));
+
     }
 
     public void addTask(Task task){
