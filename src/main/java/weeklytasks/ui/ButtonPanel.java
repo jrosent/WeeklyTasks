@@ -50,7 +50,7 @@ public class ButtonPanel extends JPanel{
                 }
                 else if(e.getSource() == addCourse){
                     System.out.println("Add course clicked");
-                    CategoryDialog cat = new CategoryDialog(taskArea,false);
+                    CategoryInfoDialog cat = new CategoryInfoDialog(taskArea,false);
                     cat.buttonClick();
                 }
                 else if(e.getSource() == editCourse){

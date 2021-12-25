@@ -5,7 +5,7 @@ import java.awt.*;
 import java.awt.event.ActionEvent;
 import java.awt.event.ActionListener;
 
-public class CategoryDialog extends JFrame{
+public class CategoryInfoDialog extends JFrame{
 
     private boolean edit;
     private TaskAreaPanel taskArea;
@@ -25,7 +25,7 @@ public class CategoryDialog extends JFrame{
 
     private JPanel buttonPanel;
 
-    public CategoryDialog(TaskAreaPanel taskArea, boolean edit){
+    public CategoryInfoDialog(TaskAreaPanel taskArea, boolean edit){
         this.edit = edit;
         this.taskArea = taskArea;
         dialog = new JPanel(new GridBagLayout());
