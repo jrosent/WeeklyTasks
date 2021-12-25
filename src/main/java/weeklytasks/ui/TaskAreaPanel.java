@@ -54,19 +54,19 @@ public class TaskAreaPanel extends JPanel{
         gc.gridx = completedLabelX;
         this.add(completedLabel,gc);
 
-        addTaskCategory("Course 1");
-        addTaskCategory("Course 2");
+        addTaskCategory("Course 1", "Now", "Later");
+        addTaskCategory("Course 2", "Now", "Later");
 
     }
 
-    public void addTaskCategory(String title){
+    public void addTaskCategory(String title, String start, String end){
         //Task Category layout constants
         int taskCategoryX = 0;
         int taskCategoryY = taskCategories.size() + 1;
         int taskCategoryWeight = 10;
         int taskCategoryWidth = 2;
 
-        TaskCategory tc = new TaskCategory(title);
+        TaskCategory tc = new TaskCategory(title, start, end);
         taskCategories.add(tc);
         gc.gridx = taskCategoryX;
         gc.gridy = taskCategoryY;

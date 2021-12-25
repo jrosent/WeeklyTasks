@@ -9,6 +9,7 @@ public class CategoryInfoDialog extends JFrame{
 
     private boolean edit;
     private TaskAreaPanel taskArea;
+    private TaskCategory taskCategory;
     private JPanel dialog;
 
     private JLabel category;
@@ -19,27 +20,49 @@ public class CategoryInfoDialog extends JFrame{
     private JTextArea start;
     private JTextArea end;
 
+    private String catNameText = "Enter the name of the new task category.";
+    private String startText = "Enter the start date.";
+    private String endText = "Enter the end date.";
+
     private JButton submit;
     private JButton cancel;
     private JButton remove;
+
 
     private JPanel buttonPanel;
 
     public CategoryInfoDialog(TaskAreaPanel taskArea, boolean edit){
         this.edit = edit;
         this.taskArea = taskArea;
+
+
+        setUpLabelsAndButtons();
+        setUpDialog();
+    }
+
+    public CategoryInfoDialog(TaskCategory taskCategory, boolean edit){
+        this.edit = edit;
+       this.taskCategory = taskCategory;
+       catNameText = taskCategory.getTitle();
+       startText = taskCategory.getStartDate();
+       endText = taskCategory.getEndDate();
+
+       setUpLabelsAndButtons();
+       setUpDialog();
+    }
+
+    public void setUpLabelsAndButtons(){
         dialog = new JPanel(new GridBagLayout());
         category = new JLabel("Name of Task Category: ");
-        catName = new JTextArea("Enter the name of the new task category.");
         startDate = new JLabel("Start Date: ");
-        start = new JTextArea("Enter the start date.");
         endDate = new JLabel("End Date:");
-        end = new JTextArea("Enter the end date.");
         submit = new JButton("Submit");
         cancel = new JButton("Cancel");
         remove = new JButton("Remove Category");
+        catName = new JTextArea(catNameText);
+        start = new JTextArea(startText);
+        end = new JTextArea(endText);
 
-        setUpDialog();
     }
 
     public void setUpDialog(){
@@ -168,9 +191,18 @@ public class CategoryInfoDialog extends JFrame{
             @Override
             public void actionPerformed(ActionEvent e) {
                 if(e.getSource() == submit) {
-                    String title = catName.getText();
-                    taskArea.addTaskCategory(title);
-                    taskArea.revalidate();
+                    catNameText = catName.getText();
+                    startText = startDate.getText();
+                    endText = endDate.getText();
+
+                    if(edit == false) {
+                        taskArea.addTaskCategory(catNameText, startText, endText);
+                        taskArea.revalidate();
+                    }
+                    else{
+                        taskCategory.editCategory(catNameText, startText, endText);
+                        taskCategory.revalidate();
+                    }
                     dispose();
                 }
                 else if(e.getSource() == remove){
@@ -184,10 +216,8 @@ public class CategoryInfoDialog extends JFrame{
 
         submit.addActionListener(click);
         cancel.addActionListener(click);
+        remove.addActionListener(click);
     }
 
-    public void addCategory(String title){
-
-    }
 
 }
