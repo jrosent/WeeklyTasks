@@ -43,6 +43,7 @@ public class CategoryInfoDialog extends JFrame{
     public CategoryInfoDialog(TaskCategory taskCategory, boolean edit){
         this.edit = edit;
        this.taskCategory = taskCategory;
+       this.taskArea = (TaskAreaPanel) taskCategory.getParent();
        catNameText = taskCategory.getTitle();
        startText = taskCategory.getStartDate();
        endText = taskCategory.getEndDate();
@@ -203,14 +204,13 @@ public class CategoryInfoDialog extends JFrame{
                         taskCategory.editCategory(catNameText, startText, endText);
                         taskCategory.revalidate();
                     }
-                    dispose();
                 }
                 else if(e.getSource() == remove){
+                    taskArea.removeTaskCategory(taskCategory);
+                    taskArea.revalidate();
 
                 }
-                else{
                     dispose();
-                }
             }
         };
 

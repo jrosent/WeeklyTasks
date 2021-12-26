@@ -161,6 +161,9 @@ public class TaskCategory extends JPanel {
         return endDate;
     }
 
+    /**
+     * Creates new Action Listener to open an editor dialog for the title button
+     */
     public void setUpTitleButton(){
         TaskCategory tc = this;
         ActionListener click = new ActionListener() {

@@ -77,4 +77,9 @@ public class TaskAreaPanel extends JPanel{
         this.add(tc,gc);
     }
 
+    public void removeTaskCategory(TaskCategory tc){
+        taskCategories.remove(tc);
+        this.remove(tc);
+    }
+
 }
