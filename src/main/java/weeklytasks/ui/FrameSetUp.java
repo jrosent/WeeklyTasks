@@ -15,7 +15,7 @@ public class FrameSetUp {
     private ButtonPanel buttonPanel;
 
     //Buttons
-    JButton taskComplete;
+    private CompletedButtonPanel taskComplete;
 
     //Labels and Text
     private JLabel label;
@@ -36,7 +36,7 @@ public class FrameSetUp {
         buttonPanel = new ButtonPanel(center);
         buttonPanel.setButtonClick();
 
-        taskComplete = new JButton("TASK COMPLETE!");
+        taskComplete = new CompletedButtonPanel();
 
         width = w;
         height = h;
@@ -48,37 +48,33 @@ public class FrameSetUp {
 
         //Set layout for content Pane
         Container cp = frame.getContentPane();
-        cp.setLayout(new BorderLayout());
 
+        cp.setLayout(new GridBagLayout());
+        GridBagConstraints gc = new GridBagConstraints();
+
+        gc.gridx = 0;
+        gc.gridy = 0;
+        gc.weightx = 1;
+        gc.weighty = 20;
+        gc.fill = GridBagConstraints.BOTH;
+
+        cp.add(buttonPanel,gc);
+
+        gc.gridx = 1;
+        gc.weightx = 20;
+
+        cp.add(center,gc);
+
+        gc.gridx = 0;
+        gc.gridy = 1;
+        gc.weightx = 1;
+        gc.weighty = 2;
+        gc.gridwidth = 2;
+
+        cp.add(taskComplete,gc);
 
         frame.setSize(width,height);
         frame.setTitle("Tasks");
 
-        //Add buttons to Task Buttons panel and add panel to frame
-        cp.add(buttonPanel,BorderLayout.WEST);
-
-        //Format and add task Complete button
-        taskComplete.setBackground(Color.GREEN);
-        taskComplete.setForeground(Color.BLACK);
-        taskComplete.setRolloverEnabled(true);
-        taskComplete.setFont(new Font("Cambria", Font.BOLD,20));
-        cp.add(taskComplete,BorderLayout.SOUTH);
-
-        /*
-        center.setLayout(new GridBagLayout());
-        GridBagSetUp gc = new GridBagSetUp();
-
-        gc.setUpGridBag(1,1,0,0,GridBagSetUp.BOTH);
-        center.add(taskArea,gc);
-
-        gc.setUpGridBag(.0001,1,1,0,GridBagSetUp.BOTH);
-        center.add(Box.createHorizontalStrut(10),gc);
-
-        gc.setUpGridBag(1,1,2, 0,GridBagSetUp.BOTH);
-        center.add(completedArea,gc);
-
-         */
-
-        cp.add(center,BorderLayout.CENTER);
     }
 }
