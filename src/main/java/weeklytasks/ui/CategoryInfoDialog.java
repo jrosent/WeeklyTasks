@@ -34,8 +34,6 @@ public class CategoryInfoDialog extends JFrame{
     public CategoryInfoDialog(TaskAreaPanel taskArea, boolean edit){
         this.edit = edit;
         this.taskArea = taskArea;
-
-
         setUpLabelsAndButtons();
         setUpDialog();
     }
@@ -44,14 +42,17 @@ public class CategoryInfoDialog extends JFrame{
         this.edit = edit;
        this.taskCategory = taskCategory;
        this.taskArea = (TaskAreaPanel) taskCategory.getParent();
-       catNameText = taskCategory.getTitle();
-       startText = taskCategory.getStartDate();
-       endText = taskCategory.getEndDate();
+       catNameText = taskCategory.dialogJText("catName");
+       startText = taskCategory.dialogJText("start");
+       endText = taskCategory.dialogJText("end");
 
        setUpLabelsAndButtons();
        setUpDialog();
     }
 
+    /**
+     * Creates the labels and buttons with appropriate text for the CategoryInfoDialog.
+     */
     public void setUpLabelsAndButtons(){
         dialog = new JPanel(new GridBagLayout());
         category = new JLabel("Name of Task Category: ");
@@ -66,6 +67,9 @@ public class CategoryInfoDialog extends JFrame{
 
     }
 
+    /**
+     * Formats the CategoryInfoDialog.
+     */
     public void setUpDialog(){
 
         GridBagConstraints gc = new GridBagConstraints();
@@ -187,6 +191,9 @@ public class CategoryInfoDialog extends JFrame{
         submit.requestFocusInWindow();
     }
 
+    /**
+     * ActionListener for the buttons in the CategoryInfoDialog.
+     */
     public void buttonClick(){
         ActionListener click = new ActionListener() {
             @Override
@@ -195,22 +202,29 @@ public class CategoryInfoDialog extends JFrame{
                     catNameText = catName.getText();
                     startText = startDate.getText();
                     endText = endDate.getText();
-
-                    if(edit == false) {
-                        taskArea.addTaskCategory(catNameText, startText, endText);
-                        taskArea.revalidate();
+                    if (taskArea.checkValidTitle(catNameText)) {
+                        if (edit == false) {
+                            taskArea.addTaskCategory(catNameText, startText, endText);
+                            taskArea.revalidate();
+                        } else {
+                            taskCategory.editCategory(catNameText, startText, endText);
+                            taskCategory.revalidate();
+                        }
+                        dispose();
                     }
                     else{
-                        taskCategory.editCategory(catNameText, startText, endText);
-                        taskCategory.revalidate();
+                        System.out.println("Enter a new title");
                     }
                 }
                 else if(e.getSource() == remove){
                     taskArea.removeTaskCategory(taskCategory);
                     taskArea.revalidate();
-
-                }
                     dispose();
+                }
+                else if(e.getSource() == cancel){
+                    dispose();
+                }
+
             }
         };
 

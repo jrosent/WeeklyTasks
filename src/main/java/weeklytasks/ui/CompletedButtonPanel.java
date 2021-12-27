@@ -14,8 +14,6 @@ public class CompletedButtonPanel extends JPanel {
         GridBagConstraints gc = new GridBagConstraints();
 
         taskCompleteButton.setBackground(Color.GREEN);
-        taskCompleteButton.setOpaque(true);
-        //taskCompleteButton.setBorderPainted(true);
         taskCompleteButton.setFont(new Font("Cambria", Font.BOLD, 20));
         gc.gridx = 0;
         gc.gridy = 0;

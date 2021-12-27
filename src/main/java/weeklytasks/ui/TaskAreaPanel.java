@@ -28,7 +28,7 @@ public class TaskAreaPanel extends JPanel{
 
     /**
      * Sets up the layout for the TaskAreaPanel to be put in the
-     * center of the main frame
+     * center of the main frame.
      */
     public void setUpTaskAreaPanel(){
 
@@ -59,6 +59,12 @@ public class TaskAreaPanel extends JPanel{
 
     }
 
+    /**
+     * Adds a new TaskCategory to the TaskAreaPanel.
+     * @param title name of the new TaskCategory
+     * @param start start date of the new TaskCategory
+     * @param end end date of the new TaskCategory
+     */
     public void addTaskCategory(String title, String start, String end){
         //Task Category layout constants
         int taskCategoryX = 0;
@@ -77,9 +83,28 @@ public class TaskAreaPanel extends JPanel{
         this.add(tc,gc);
     }
 
+    /**
+     * Removes a TaskCategory from the TaskAreaPanel.
+     * @param tc TaskCategory to be removed
+     */
     public void removeTaskCategory(TaskCategory tc){
         taskCategories.remove(tc);
         this.remove(tc);
+    }
+
+    /**
+     * Checks if the title for a new TaskCategory is unique.
+     * @param title name of new TaskCategory
+     * @return true if unique false if not
+     */
+    public boolean checkValidTitle(String title){
+
+        for(TaskCategory tc: taskCategories){
+            if(tc.compareTitle(title)){
+                return false;
+            }
+        }
+        return true;
     }
 
 }

@@ -44,6 +44,9 @@ public class FrameSetUp {
         frame.setVisible(true);
     }
 
+    /**
+     * Sets up and adds all the panels to the frame's ContentPane.
+     */
     public void setUp(){
 
         //Set layout for content Pane

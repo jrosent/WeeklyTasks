@@ -37,7 +37,7 @@ public class TaskCategory extends JPanel {
 
     /**
      * Sets up the layout for a new task category with
-     * a completed and to-do list
+     * a completed and to-do list.
      */
     public void setUpTaskCategory() {
 
@@ -97,7 +97,7 @@ public class TaskCategory extends JPanel {
     }
 
     /**
-     * Edits the course information if the input is new values
+     * Edits the course information if the input is new values.
      * @param title name of the task category
      * @param start start date of the task category
      * @param end end date of the task category
@@ -114,14 +114,13 @@ public class TaskCategory extends JPanel {
             if (!this.endDate.equalsIgnoreCase(end) && end != null) {
                 setEnd(end);
             }
-        //titleButton.revalidate();
     }
 
     /**
      * Sets the title variable to a new string.
      * @param title new name of the task category
      */
-    public void setTitle(String title){
+    private void setTitle(String title){
         this.title = title;
     }
 
@@ -129,40 +128,40 @@ public class TaskCategory extends JPanel {
      * Sets a new start date for the Task Category.
      * @param start new start date for the task category
      */
-    public void setStart(String start){
+    private void setStart(String start){
         this.startDate = start;
     }
 
     /**
-     * Sets a new end date for the Task Category
+     * Sets a new end date for the Task Category.
      * @param end new end date for the task category
      */
-    public void setEnd(String end){
+    private void setEnd(String end){
         this.endDate = end;
     }
 
     /**
-     * Returns the title of the category
+     * Returns the title of the category.
      */
-    public String getTitle(){
+    private String getTitle(){
         return title;
     }
     /**
-     * Returns the start date of the category
+     * Returns the start date of the category.
      */
-    public String getStartDate(){
+    private String getStartDate(){
         return startDate;
     }
 
     /**
-     * Returns the end date of the category
+     * Returns the end date of the category.
      */
-    public String getEndDate(){
+    private String getEndDate(){
         return endDate;
     }
 
     /**
-     * Creates new Action Listener to open an editor dialog for the title button
+     * Creates new Action Listener to open an editor dialog for the title button.
      */
     public void setUpTitleButton(){
         TaskCategory tc = this;
@@ -175,6 +174,43 @@ public class TaskCategory extends JPanel {
         };
 
         titleButton.addActionListener(click);
+    }
 
+    /**
+     * Check if the new title is the same as this title ignoring capitalization.
+     * @param title new title for a task category
+     * @return true if the same, false if different
+     */
+    public boolean compareTitle(String title){
+        if(this.getTitle().equalsIgnoreCase(title)){
+            return true;
+        }
+        else {
+            return false;
+        }
+    }
+
+    /**
+     * Creates a new String with the specified TaskCategory variable.
+     * @param var string indicating the variable information to be added to the JTextArea
+     * @return String containing the value of the specified variable
+     */
+    public String dialogJText(String var){
+        String temp = "";
+        switch(var){
+            case("catName") :
+                temp = getTitle();
+                break;
+            case("start") :
+                temp = getStartDate();
+                break;
+            case("end") :
+                temp = getEndDate();
+                break;
+            default :
+                temp = "";
+                break;
+        }
+        return temp;
     }
 }
