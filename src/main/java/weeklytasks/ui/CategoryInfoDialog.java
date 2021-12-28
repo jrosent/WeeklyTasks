@@ -5,10 +5,10 @@ import java.awt.*;
 import java.awt.event.ActionEvent;
 import java.awt.event.ActionListener;
 
-public class CategoryInfoDialog extends JFrame{
+public class CategoryInfoDialog extends JFrame {
 
-    private boolean edit;
-    private TaskAreaPanel taskArea;
+    private final boolean edit;
+    private final TaskAreaPanel taskArea;
     private TaskCategory taskCategory;
     private JPanel dialog;
 
@@ -31,29 +31,29 @@ public class CategoryInfoDialog extends JFrame{
 
     private JPanel buttonPanel;
 
-    public CategoryInfoDialog(TaskAreaPanel taskArea, boolean edit){
+    public CategoryInfoDialog(TaskAreaPanel taskArea, boolean edit) {
         this.edit = edit;
         this.taskArea = taskArea;
         setUpLabelsAndButtons();
         setUpDialog();
     }
 
-    public CategoryInfoDialog(TaskCategory taskCategory, boolean edit){
+    public CategoryInfoDialog(TaskCategory taskCategory, boolean edit) {
         this.edit = edit;
-       this.taskCategory = taskCategory;
-       this.taskArea = (TaskAreaPanel) taskCategory.getParent();
-       catNameText = taskCategory.dialogJText("catName");
-       startText = taskCategory.dialogJText("start");
-       endText = taskCategory.dialogJText("end");
+        this.taskCategory = taskCategory;
+        this.taskArea = (TaskAreaPanel) taskCategory.getParent();
+        catNameText = taskCategory.dialogJText("catName");
+        startText = taskCategory.dialogJText("start");
+        endText = taskCategory.dialogJText("end");
 
-       setUpLabelsAndButtons();
-       setUpDialog();
+        setUpLabelsAndButtons();
+        setUpDialog();
     }
 
     /**
      * Creates the labels and buttons with appropriate text for the CategoryInfoDialog.
      */
-    public void setUpLabelsAndButtons(){
+    public void setUpLabelsAndButtons() {
         dialog = new JPanel(new GridBagLayout());
         category = new JLabel("Name of Task Category: ");
         startDate = new JLabel("Start Date: ");
@@ -70,7 +70,7 @@ public class CategoryInfoDialog extends JFrame{
     /**
      * Formats the CategoryInfoDialog.
      */
-    public void setUpDialog(){
+    public void setUpDialog() {
 
         GridBagConstraints gc = new GridBagConstraints();
 
@@ -100,13 +100,13 @@ public class CategoryInfoDialog extends JFrame{
         gc.fill = GridBagConstraints.VERTICAL;
         gc.weightx = labelWeightX;
 
-        dialog.add(Box.createHorizontalStrut(bufferSize),gc);
+        dialog.add(Box.createHorizontalStrut(bufferSize), gc);
 
         gc.fill = GridBagConstraints.HORIZONTAL;
         gc.weighty = lTWeightY;
         gc.gridx = labelX;
 
-        dialog.add(Box.createVerticalStrut(bufferSize),gc);
+        dialog.add(Box.createVerticalStrut(bufferSize), gc);
 
         //Set Up for labels
         gc.weighty = lTWeightY;
@@ -114,20 +114,20 @@ public class CategoryInfoDialog extends JFrame{
         gc.anchor = GridBagConstraints.EAST;
         gc.fill = GridBagConstraints.NONE;
         gc.gridy = categoryY;
-        dialog.add(category,gc);
+        dialog.add(category, gc);
 
         gc.gridy = startY;
-        dialog.add(startDate,gc);
+        dialog.add(startDate, gc);
 
         gc.gridy = endY;
-        dialog.add(endDate,gc);
+        dialog.add(endDate, gc);
 
         gc.gridx = seperatorX;
         gc.anchor = GridBagConstraints.CENTER;
         gc.fill = GridBagConstraints.VERTICAL;
         gc.weightx = separatorWeight;
 
-        dialog.add(Box.createHorizontalStrut(separatorSize),gc);
+        dialog.add(Box.createHorizontalStrut(separatorSize), gc);
 
         //Set up for text areas
         gc.weightx = textWeightX;
@@ -136,34 +136,34 @@ public class CategoryInfoDialog extends JFrame{
         gc.gridy = categoryY;
         gc.anchor = GridBagConstraints.WEST;
         gc.fill = GridBagConstraints.HORIZONTAL;
-        dialog.add(catName,gc);
+        dialog.add(catName, gc);
 
         gc.gridy = startY;
-        dialog.add(start,gc);
+        dialog.add(start, gc);
 
         gc.gridy = endY;
-        dialog.add(end,gc);
+        dialog.add(end, gc);
 
         gc.gridx = rightBufferX;
         gc.fill = GridBagConstraints.VERTICAL;
         gc.weightx = 2;
 
-        dialog.add(Box.createHorizontalStrut(bufferSize),gc);
+        dialog.add(Box.createHorizontalStrut(bufferSize), gc);
 
         JPanel buttonPanel = new JPanel(new GridBagLayout());
         gc.gridx = 0;
         gc.gridy = 0;
         gc.weightx = 1;
         gc.weighty = 1;
-        gc.insets = new Insets(0,0,0,5);
+        gc.insets = new Insets(0, 0, 0, 5);
         gc.fill = GridBagConstraints.NONE;
         gc.anchor = GridBagConstraints.EAST;
-        buttonPanel.add(submit,gc);
+        buttonPanel.add(submit, gc);
         gc.gridx = 1;
         gc.anchor = GridBagConstraints.WEST;
-        gc.insets = new Insets(0,5,0,0);
-        buttonPanel.add(cancel,gc);
-        if(edit == true) {
+        gc.insets = new Insets(0, 5, 0, 0);
+        buttonPanel.add(cancel, gc);
+        if (edit == true) {
             gc.gridx = 0;
             gc.gridy = 1;
             gc.gridwidth = 2;
@@ -178,7 +178,7 @@ public class CategoryInfoDialog extends JFrame{
         gc.gridwidth = 10;
         gc.anchor = GridBagConstraints.CENTER;
         gc.fill = GridBagConstraints.BOTH;
-        dialog.add(buttonPanel,gc);
+        dialog.add(buttonPanel, gc);
 
         TextAreaFocusListener cn = new TextAreaFocusListener(catName);
         TextAreaFocusListener st = new TextAreaFocusListener(start);
@@ -186,7 +186,7 @@ public class CategoryInfoDialog extends JFrame{
 
 
         this.add(dialog);
-        this.setSize(600,400);
+        this.setSize(600, 400);
         this.setVisible(true);
         submit.requestFocusInWindow();
     }
@@ -194,11 +194,11 @@ public class CategoryInfoDialog extends JFrame{
     /**
      * ActionListener for the buttons in the CategoryInfoDialog.
      */
-    public void buttonClick(){
+    public void buttonClick() {
         ActionListener click = new ActionListener() {
             @Override
             public void actionPerformed(ActionEvent e) {
-                if(e.getSource() == submit) {
+                if (e.getSource() == submit) {
                     catNameText = catName.getText();
                     startText = startDate.getText();
                     endText = endDate.getText();
@@ -211,17 +211,14 @@ public class CategoryInfoDialog extends JFrame{
                             taskCategory.revalidate();
                         }
                         dispose();
-                    }
-                    else{
+                    } else {
                         System.out.println("Enter a new title");
                     }
-                }
-                else if(e.getSource() == remove){
+                } else if (e.getSource() == remove) {
                     taskArea.removeTaskCategory(taskCategory);
                     taskArea.revalidate();
                     dispose();
-                }
-                else if(e.getSource() == cancel){
+                } else if (e.getSource() == cancel) {
                     dispose();
                 }
 

@@ -50,6 +50,10 @@ public class TaskTable extends JTable {
 
     }
 
+    /**
+     * Adds a task to this task table.
+     * @param task task to be added
+     */
     public void addTask(Task task){
         tasks.add(task);
         model.addRow(task.getTaskInfo());

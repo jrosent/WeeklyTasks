@@ -15,6 +15,10 @@ public class Task {
         taskInfo[3] = inProgress;
     }
 
+    /**
+     * Gets the information about this task.
+     * @return Object array of the task's information
+     */
     public Object[] getTaskInfo(){
         return taskInfo;
     }

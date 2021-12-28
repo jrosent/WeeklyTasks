@@ -35,6 +35,9 @@ public class ButtonPanel extends JPanel{
     }
 
 
+    /**
+     * Sets up th ActionListener for the buttons in this panel.
+     */
     public void setButtonClick(){
         ActionListener buttonClick = new ActionListener(){
             @Override

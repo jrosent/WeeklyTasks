@@ -4,6 +4,9 @@ import javax.swing.*;
 import java.awt.event.FocusEvent;
 import java.awt.event.FocusListener;
 
+/**
+ * Sets up the default behavior of the JTextAreas in this application
+ */
 public class TextAreaFocusListener implements FocusListener {
     private final JTextArea textArea;
     TextAreaFocusListener(JTextArea textArea){

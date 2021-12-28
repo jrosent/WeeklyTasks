@@ -19,6 +19,10 @@ public class CompletedPanel extends JPanel{
         this.add(taskScrollPane,BorderLayout.CENTER);
     }
 
+    /**
+     * Adds a new task to this completed panel.
+     * @param task task to be added to the panel
+     */
     public void addTask(Task task){
         tasks.add(task);
         taskTable.addTask(task);
