@@ -1,7 +1,6 @@
 package weeklytasks;
 
-import weeklytasks.ui.FrameSetUp;
-import weeklytasks.ui.TaskAreaPanel;
+import weeklytasks.ui.Frame;
 
 import javax.swing.*;
 
@@ -14,7 +13,7 @@ public class Start {
         catch(Exception e){
             System.out.println("LAF didn't work");
         }
-        FrameSetUp starter = new FrameSetUp(1000,500);
+        Frame starter = new Frame(1000,500);
         starter.setUp();
     }
 }

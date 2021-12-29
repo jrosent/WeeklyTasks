@@ -33,7 +33,6 @@ public class TaskDialog extends JPanel {
         submit = new JButton("Submit");
         cancel = new JButton("Cancel");
         inProgress = new JCheckBox("In Progress");
-
     }
 
 }

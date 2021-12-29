@@ -3,7 +3,7 @@ package weeklytasks.ui;
 import javax.swing.*;
 import java.awt.*;
 
-public class FrameSetUp {
+public class Frame {
     //Frame
     private JFrame frame;
 
@@ -24,7 +24,7 @@ public class FrameSetUp {
     private int width;
     private int height;
 
-    public FrameSetUp(int w, int h){
+    public Frame(int w, int h){
 
         frame = new JFrame();
         center = new TaskAreaPanel();

@@ -6,13 +6,13 @@ import java.awt.event.ActionEvent;
 import java.awt.event.ActionListener;
 
 public class ButtonPanel extends JPanel{
-    private TaskAreaPanel taskArea;
+    private TaskCategory taskCategory;
     private JButton addTask;
     private JButton editTask;
     private JButton removeTask;
 
     public ButtonPanel(){
-        this.taskArea = taskArea;
+        this.taskCategory = (TaskCategory) getParent();
         this.setLayout(new GridLayout(3,1));
         addTask = new JButton("Add Task");
         editTask = new JButton("Edit Task");

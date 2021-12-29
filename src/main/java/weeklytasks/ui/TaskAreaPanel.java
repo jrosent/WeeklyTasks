@@ -34,20 +34,30 @@ public class TaskAreaPanel extends JPanel{
 
         //Label layout constants
         int labelWeight = 1;
-        int todoLabelX = 0;
-        int completedLabelX = 1;
+        double logoWeight = 0.15;
+        int logoX = 0;
+        int todoLabelX = 1;
+        int completedLabelX = 2;
         int titleLabelY = 0;
 
         //Set layout and add components
         this.setLayout(new GridBagLayout());
         GridBagConstraints gc = new GridBagConstraints();
-        //todolabel formatting
-        gc.weightx = labelWeight;
+        //Logo and general label formatting
+        gc.weightx = logoWeight;
         gc.weighty = labelWeight;
-        gc.gridx = todoLabelX;
+        gc.gridx = logoX;
         gc.gridy = titleLabelY;
         gc.fill = GridBagConstraints.BOTH;
+        JLabel logo = new JLabel("COOL LOGO");
+        logo.setHorizontalAlignment(JLabel.CENTER);
+        logo.setBorder(BorderFactory.createLineBorder(Color.RED,3));
 
+        this.add(logo, gc);
+
+        //todolabel formatting
+        gc.gridx = todoLabelX;
+        gc.weightx = labelWeight;
         this.add(todoLabel,gc);
 
         //Completed label formatting
@@ -71,7 +81,7 @@ public class TaskAreaPanel extends JPanel{
         int taskCategoryX = 0;
         int taskCategoryY = taskCategories.size() + 1;
         int taskCategoryWeight = 10;
-        int taskCategoryWidth = 2;
+        int taskCategoryWidth = 3;
 
         TaskCategory tc = new TaskCategory(title, start, end);
         taskCategories.add(tc);
