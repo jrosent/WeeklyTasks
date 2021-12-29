@@ -36,6 +36,7 @@ public class CategoryInfoDialog extends JFrame {
         this.taskArea = taskArea;
         setUpLabelsAndButtons();
         setUpDialog();
+        buttonClick();
     }
 
     public CategoryInfoDialog(TaskCategory taskCategory, boolean edit) {
@@ -48,6 +49,7 @@ public class CategoryInfoDialog extends JFrame {
 
         setUpLabelsAndButtons();
         setUpDialog();
+        buttonClick();
     }
 
     /**

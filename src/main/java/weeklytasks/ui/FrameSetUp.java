@@ -8,11 +8,9 @@ public class FrameSetUp {
     private JFrame frame;
 
     //Panels
-    private JPanel taskButtons;
     private TaskAreaPanel center;
     private ToDoPanel taskArea;
     private CompletedPanel completedArea;
-    private ButtonPanel buttonPanel;
 
     //Buttons
     private CompletedButtonPanel taskComplete;
@@ -29,12 +27,9 @@ public class FrameSetUp {
     public FrameSetUp(int w, int h){
 
         frame = new JFrame();
-        taskButtons = new JPanel(new GridLayout(6,1));
         center = new TaskAreaPanel();
         taskArea = new ToDoPanel();
         completedArea = new CompletedPanel();
-        buttonPanel = new ButtonPanel(center);
-        buttonPanel.setButtonClick();
 
         taskComplete = new CompletedButtonPanel(center);
 
@@ -61,7 +56,7 @@ public class FrameSetUp {
         gc.weighty = 20;
         gc.fill = GridBagConstraints.BOTH;
 
-        cp.add(buttonPanel,gc);
+        //cp.add(buttonPanel,gc);
 
         gc.gridx = 1;
         gc.weightx = 20;

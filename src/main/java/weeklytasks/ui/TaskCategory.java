@@ -10,6 +10,7 @@ public class TaskCategory extends JPanel {
 
     private ToDoPanel todo;
     private CompletedPanel completed;
+    private ButtonPanel taskOps;
     private JPanel container;
     private JButton titleButton;
 
@@ -20,6 +21,7 @@ public class TaskCategory extends JPanel {
     public TaskCategory(String title, String start, String end){
         todo = new ToDoPanel();
         completed = new CompletedPanel();
+        taskOps = new ButtonPanel();
         this.title = title;
         this.startDate = start;
         this.endDate = end;
@@ -47,13 +49,15 @@ public class TaskCategory extends JPanel {
         int buttonY = 0;
         double buttonWeightX = 1;
         int buttonWeightY = 1;
-        int buttonWidth = 3;
+        int buttonWidth = 4;
 
         //Panel Constraints
-        int todoX = 0;
-        int panelSeparatorX = 1;
-        int completedX = 2;
+        int taskOpsX = 0;
+        int todoX = 1;
+        int panelSeparatorX = 2;
+        int completedX = 3;
         int panelsY = 1;
+        double taskOpsWeight = 0.15;
         int panelWeightX = 1;
         double separatorWeightX = 0.0001;
         int panelWeightY = 15;
@@ -69,7 +73,7 @@ public class TaskCategory extends JPanel {
         //titleButton.setForeground(Color.BLACK);
         gc.gridx = buttonX;
         gc.gridy = buttonY;
-        gc.weightx = buttonWeightX;
+        gc.weightx = taskOpsWeight;
         gc.weighty = buttonWeightY;
         gc.gridwidth = buttonWidth;
         gc.fill = GridBagConstraints.BOTH;
@@ -79,9 +83,15 @@ public class TaskCategory extends JPanel {
 
         //TodoPanel formatting
         gc.gridy = panelsY;
+        gc.gridx = taskOpsX;
+        gc.weightx = taskOpsWeight;
         gc.weighty = panelWeightY;
         gc.gridwidth = panelWidth;
 
+        this.add(taskOps,gc);
+
+        gc.gridx = todoX;
+        gc.weightx = panelWeightX;
         this.add(todo, gc);
 
         //Panel Separator formatting
