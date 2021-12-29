@@ -8,12 +8,12 @@ public class CompletedPanel extends JPanel{
 
     private ArrayList<Task> tasks;
     private JScrollPane taskScrollPane;
-    private TaskTable taskTable;
+    private CompletedTaskTable taskTable;
     int selected;
 
     public CompletedPanel(){
         tasks = new ArrayList<>();
-        taskTable = new TaskTable();
+        taskTable = new CompletedTaskTable();
         taskScrollPane = new JScrollPane(taskTable);
         this.setLayout(new BorderLayout());
         this.add(taskScrollPane,BorderLayout.CENTER);

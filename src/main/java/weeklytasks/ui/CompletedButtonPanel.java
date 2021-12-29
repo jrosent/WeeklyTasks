@@ -2,15 +2,28 @@ package weeklytasks.ui;
 
 import javax.swing.*;
 import java.awt.*;
+import java.awt.event.ActionEvent;
+import java.awt.event.ActionListener;
 
 public class CompletedButtonPanel extends JPanel {
-    JButton taskCompleteButton;
+    private TaskAreaPanel taskAreaPanel;
+    private JButton taskCompleteButton;
+    private JLabel label = new JLabel("Version 1.0.");
 
-    public CompletedButtonPanel(){
+
+    public CompletedButtonPanel(TaskAreaPanel taskAreaPanel){
         taskCompleteButton = new JButton("TASK COMPLETE");
         this.setLayout(new GridBagLayout());
-        JLabel label = new JLabel("Most recent function.");
+        this.taskAreaPanel = taskAreaPanel;
 
+        setUp();
+        taskCompleteClicked();
+    }
+
+    /**
+     * Sets up and formats the completed button panel
+     */
+    public void setUp(){
         GridBagConstraints gc = new GridBagConstraints();
 
         taskCompleteButton.setBackground(Color.GREEN);
@@ -30,6 +43,21 @@ public class CompletedButtonPanel extends JPanel {
         gc.anchor = GridBagConstraints.EAST;
 
         this.add(label,gc);
+    }
 
+    /**
+     * ActionListener for the task completed button to move tasks from todo to completed.
+     */
+    public void taskCompleteClicked(){
+        ActionListener click = new ActionListener() {
+            @Override
+            public void actionPerformed(ActionEvent e) {
+                System.out.println("Task Complete Clicked.");
+                taskAreaPanel.moveTasks();
+
+            }
+        };
+
+        taskCompleteButton.addActionListener(click);
     }
 }

@@ -7,20 +7,19 @@ import javax.swing.table.DefaultTableModel;
 import javax.swing.table.JTableHeader;
 import javax.swing.table.TableModel;
 
-public class TaskTable extends JTable {
+public class CompletedTaskTable extends JTable {
 
-    final Object[] HEADER = {"Task Number", "Task Description", "Due Date","In Progress"};
+    final Object[] HEADER = {"Task Number", "Task Description", "Date Completed"};
     private ArrayList<Task> tasks;
     DefaultTableModel model;
-    int inProgressIndex = 3;
 
-    public TaskTable() {
+    public CompletedTaskTable() {
         tasks = new ArrayList<>();
         model = new DefaultTableModel(HEADER,0) {
 
             @Override
             public Class<?> getColumnClass(int columnIndex){
-                if(columnIndex == inProgressIndex) {
+                if(columnIndex == 3) {
                     return Boolean.class;
                 }
                 else{
@@ -31,7 +30,7 @@ public class TaskTable extends JTable {
 
             @Override
             public boolean isCellEditable(int row, int column){
-                if(column == inProgressIndex){
+                if(column == 3){
                     return true;
                 }
                 else {
@@ -46,10 +45,6 @@ public class TaskTable extends JTable {
         this.getColumnModel().getColumn(1).setPreferredWidth(250);
         this.getColumnModel().getColumn(2).setPreferredWidth(100);
 
-        this.addTask(new Task(1, "New Task", "12/25/21"));
-        this.addTask(new Task(1, "New Task 2", "12/25/21"));
-        this.addTask(new Task(1, "New Task 3", "12/25/21"));
-
 
     }
 
@@ -61,30 +56,4 @@ public class TaskTable extends JTable {
         tasks.add(task);
         model.addRow(task.getTaskInfo());
     }
-
-    /**
-     * Removed the selected task
-     */
-    public void removeTask(int index){
-        tasks.remove(index);
-        model.removeRow(index);
-    }
-
-    /**
-     * Gets the in progress tasks
-     * @return and ArrayList of the tasks
-     */
-    public ArrayList<Task> getSelected(){
-        ArrayList<Task> selected = new ArrayList<Task>();
-        for(int i = tasks.size()-1; i >= 0; i--){
-            if((boolean) model.getValueAt(i,inProgressIndex) == true){
-                selected.add(tasks.get(i));
-                model.removeRow(i);
-                tasks.remove(i);
-            }
-        }
-        return selected;
-    }
-
-
 }

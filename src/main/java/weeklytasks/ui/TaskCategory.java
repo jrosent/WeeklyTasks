@@ -4,6 +4,7 @@ import javax.swing.*;
 import java.awt.*;
 import java.awt.event.ActionEvent;
 import java.awt.event.ActionListener;
+import java.util.ArrayList;
 
 public class TaskCategory extends JPanel {
 
@@ -212,5 +213,15 @@ public class TaskCategory extends JPanel {
                 break;
         }
         return temp;
+    }
+
+    /**
+     * Move selected tasks from todo to completed
+     */
+    public void moveTasks(){
+        ArrayList<Task> toMove = todo.getSelected();
+        for(Task t : toMove){
+            completed.addTask(t);
+        }
     }
 }

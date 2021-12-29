@@ -33,5 +33,9 @@ public class ToDoPanel extends JPanel{
         taskTable.addTask(task);
     }
 
+    public ArrayList<Task> getSelected(){
+        ArrayList<Task> toMove = taskTable.getSelected();
+        return toMove;
+    }
 
 }

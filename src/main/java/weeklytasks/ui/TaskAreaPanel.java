@@ -57,6 +57,7 @@ public class TaskAreaPanel extends JPanel{
         addTaskCategory("Course 1", "Now", "Later");
         addTaskCategory("Course 2", "Now", "Later");
 
+
     }
 
     /**
@@ -105,6 +106,15 @@ public class TaskAreaPanel extends JPanel{
             }
         }
         return true;
+    }
+
+    /**
+     * Move selected tasks to completed
+     */
+    public void moveTasks(){
+        for(TaskCategory tc : taskCategories){
+            tc.moveTasks();
+        }
     }
 
 }

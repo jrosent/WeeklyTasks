@@ -36,7 +36,7 @@ public class FrameSetUp {
         buttonPanel = new ButtonPanel(center);
         buttonPanel.setButtonClick();
 
-        taskComplete = new CompletedButtonPanel();
+        taskComplete = new CompletedButtonPanel(center);
 
         width = w;
         height = h;
@@ -77,7 +77,13 @@ public class FrameSetUp {
         cp.add(taskComplete,gc);
 
         frame.setSize(width,height);
-        frame.setTitle("Tasks");
+        frame.setTitle("Task Master");
+    }
 
+    /**
+     * Move selected tasks to completed
+     */
+    public void taskCompleted(){
+        center.moveTasks();
     }
 }

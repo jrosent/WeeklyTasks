@@ -5,7 +5,11 @@ import java.util.Date;
 
 public class Task {
     private Object[] taskInfo;
-    private Boolean inProgress;
+    private Boolean inProgress = false;
+
+    public Task(){
+        taskInfo = new Object[4];
+    }
 
     public Task(int num, String desc, String date){
         taskInfo = new Object[4];
@@ -22,4 +26,5 @@ public class Task {
     public Object[] getTaskInfo(){
         return taskInfo;
     }
+
 }

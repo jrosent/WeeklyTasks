@@ -36,8 +36,4 @@ public class TaskDialog extends JPanel {
 
     }
 
-    public void setUpTaskDialog(){
-
-    }
-
 }
