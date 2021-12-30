@@ -9,7 +9,7 @@ import javax.swing.table.TableModel;
 
 public class TaskTable extends JTable {
 
-    final Object[] HEADER = {"Task Number", "Task Description", "Due Date","In Progress"};
+    final Object[] HEADER = {"Task Number", "Task Description", "Due Date","Completed"};
     private ArrayList<Task> tasks;
     DefaultTableModel model;
     int inProgressIndex = 3;

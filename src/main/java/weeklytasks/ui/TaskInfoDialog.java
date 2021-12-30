@@ -3,7 +3,7 @@ package weeklytasks.ui;
 import javax.swing.*;
 import java.awt.*;
 
-public class TaskDialog extends JPanel {
+public class TaskInfoDialog extends JPanel {
 
     private TaskCategory cat;
 
@@ -22,7 +22,7 @@ public class TaskDialog extends JPanel {
 
     private JCheckBox inProgress;
 
-    public TaskDialog(TaskCategory cat, boolean edit){
+    public TaskInfoDialog(TaskCategory cat, boolean edit){
         this.cat = cat;
 
         dialog = new JPanel(new GridBagLayout());

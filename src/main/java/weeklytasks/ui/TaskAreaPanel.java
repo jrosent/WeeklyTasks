@@ -109,7 +109,6 @@ public class TaskAreaPanel extends JPanel{
      * @return true if unique false if not
      */
     public boolean checkValidTitle(String title){
-
         for(TaskCategory tc: taskCategories){
             if(tc.compareTitle(title)){
                 return false;

@@ -202,9 +202,9 @@ public class CategoryInfoDialog extends JFrame {
             public void actionPerformed(ActionEvent e) {
                 if (e.getSource() == submit) {
                     catNameText = catName.getText();
-                    startText = startDate.getText();
-                    endText = endDate.getText();
-                    if (taskArea.checkValidTitle(catNameText)) {
+                    startText = start.getText();
+                    endText = end.getText();
+                    if (taskArea.checkValidTitle(catNameText) || taskCategory.compareTitle(catNameText)) {
                         if (edit == false) {
                             taskArea.addTaskCategory(catNameText, startText, endText);
                             taskArea.revalidate();
