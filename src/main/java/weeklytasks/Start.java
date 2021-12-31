@@ -13,7 +13,7 @@ public class Start {
         catch(Exception e){
             System.out.println("LAF didn't work");
         }
-        Frame starter = new Frame(1000,500);
+        Frame starter = new Frame(1000,1000);
         starter.setUp();
     }
 }

@@ -2,6 +2,7 @@ package weeklytasks.ui;
 
 import javax.swing.*;
 import java.awt.*;
+import java.net.URL;
 import java.util.ArrayList;
 
 public class TaskAreaPanel extends JPanel{
@@ -32,8 +33,16 @@ public class TaskAreaPanel extends JPanel{
      */
     public void setUpTaskAreaPanel(){
 
+        URL image = TaskAreaPanel.class.getClassLoader().getResource("taskmaster.jpg");
+        ImageIcon icon = new ImageIcon(image);
+        JPanel logoHolder = new JPanel(new BorderLayout());
+        JLabel logo = new JLabel(icon);
+        logoHolder.add(logo,BorderLayout.CENTER);
+
+
         //Label layout constants
-        int labelWeight = 1;
+        double labelWeightX = 1;
+        double labelWeightY = 0.15;
         double logoWeight = 0.15;
         int logoX = 0;
         int todoLabelX = 1;
@@ -45,19 +54,18 @@ public class TaskAreaPanel extends JPanel{
         GridBagConstraints gc = new GridBagConstraints();
         //Logo and general label formatting
         gc.weightx = logoWeight;
-        gc.weighty = labelWeight;
+        gc.weighty = labelWeightY;
         gc.gridx = logoX;
         gc.gridy = titleLabelY;
         gc.fill = GridBagConstraints.BOTH;
-        JLabel logo = new JLabel("COOL LOGO");
-        logo.setHorizontalAlignment(JLabel.CENTER);
+        //logo.setHorizontalAlignment(JLabel.CENTER);
         logo.setBorder(BorderFactory.createLineBorder(Color.RED,3));
 
-        this.add(logo, gc);
+        this.add(logoHolder, gc);
 
         //todolabel formatting
         gc.gridx = todoLabelX;
-        gc.weightx = labelWeight;
+        gc.weightx = labelWeightX;
         this.add(todoLabel,gc);
 
         //Completed label formatting

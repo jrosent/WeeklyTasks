@@ -234,4 +234,5 @@ public class TaskCategory extends JPanel {
             completed.addTask(t);
         }
     }
+
 }
