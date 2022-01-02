@@ -1,8 +1,6 @@
 package weeklytasks.ui;
 
 import java.awt.*;
-import java.awt.event.ActionEvent;
-import java.awt.event.ActionListener;
 import java.util.ArrayList;
 import javax.swing.*;
 
@@ -14,7 +12,6 @@ public class ToDoPanel extends JPanel{
     private ArrayList<Task> tasks;
     private JScrollPane taskScrollPane;
     private TaskTable taskTable;
-    int selected;
 
     public ToDoPanel(){
         tasks = new ArrayList<>();
@@ -33,9 +30,13 @@ public class ToDoPanel extends JPanel{
         taskTable.addTask(task);
     }
 
-    public ArrayList<Task> getSelected(){
-        ArrayList<Task> toMove = taskTable.getSelected();
+    public ArrayList<Task> getCompleted(){
+        ArrayList<Task> toMove = taskTable.getCompleted();
         return toMove;
+    }
+
+    public Task getSelected(){
+        return taskTable.getSelected();
     }
 
 }

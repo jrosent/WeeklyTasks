@@ -1,6 +1,8 @@
 package weeklytasks;
 
+import weeklytasks.ui.CategoryInfoDialog;
 import weeklytasks.ui.Frame;
+import weeklytasks.ui.TaskInfoDialog;
 
 import javax.swing.*;
 
@@ -14,6 +16,6 @@ public class Start {
             System.out.println("LAF didn't work");
         }
         Frame starter = new Frame(1000,1000);
-        starter.setUp();
+        //TaskInfoDialog cat = new TaskInfoDialog();
     }
 }

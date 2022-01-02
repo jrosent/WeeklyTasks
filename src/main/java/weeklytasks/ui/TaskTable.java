@@ -1,11 +1,8 @@
 package weeklytasks.ui;
 
 import java.util.ArrayList;
-import java.util.Date;
 import javax.swing.*;
 import javax.swing.table.DefaultTableModel;
-import javax.swing.table.JTableHeader;
-import javax.swing.table.TableModel;
 
 public class TaskTable extends JTable {
 
@@ -74,16 +71,20 @@ public class TaskTable extends JTable {
      * Gets the in progress tasks
      * @return and ArrayList of the tasks
      */
-    public ArrayList<Task> getSelected(){
+    public ArrayList<Task> getCompleted(){
         ArrayList<Task> selected = new ArrayList<Task>();
         for(int i = tasks.size()-1; i >= 0; i--){
             if((boolean) model.getValueAt(i,inProgressIndex) == true){
                 selected.add(tasks.get(i));
-                model.removeRow(i);
-                tasks.remove(i);
+                removeTask(i);
             }
         }
         return selected;
+    }
+
+    public Task getSelected(){
+        int row = getSelectedRow();
+        return tasks.get(row);
     }
 
 

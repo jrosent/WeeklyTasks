@@ -14,6 +14,8 @@ public class TaskCategory extends JPanel {
     private JPanel container;
     private JButton titleButton;
 
+    private int numTasks = 0;
+
     private String title;
     private String startDate;
     private String endDate;
@@ -21,7 +23,7 @@ public class TaskCategory extends JPanel {
     public TaskCategory(String title, String start, String end){
         todo = new ToDoPanel();
         completed = new CompletedPanel();
-        taskOps = new ButtonPanel();
+        taskOps = new ButtonPanel(this);
         this.title = title;
         this.startDate = start;
         this.endDate = end;
@@ -229,10 +231,29 @@ public class TaskCategory extends JPanel {
      * Move selected tasks from todo to completed
      */
     public void moveTasks(){
-        ArrayList<Task> toMove = todo.getSelected();
+        ArrayList<Task> toMove = todo.getCompleted();
         for(Task t : toMove){
             completed.addTask(t);
         }
+    }
+
+    public void addTask(Task task){
+        todo.addTask(task);
+    }
+
+    public void addNewTask(String desc, String dueDate){
+        Task t = new Task(numTasks,desc,dueDate);
+        todo.addTask(t);
+        numTasks++;
+    }
+
+    public Task getSelected(){
+        return todo.getSelected();
+    }
+
+    public int getTaskNum(){
+        int i = this.numTasks;
+        return i;
     }
 
 }

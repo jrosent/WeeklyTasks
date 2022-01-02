@@ -11,8 +11,8 @@ public class ButtonPanel extends JPanel{
     private JButton editTask;
     private JButton removeTask;
 
-    public ButtonPanel(){
-        this.taskCategory = (TaskCategory) getParent();
+    public ButtonPanel(TaskCategory cat){
+        this.taskCategory = cat;
         this.setLayout(new GridLayout(3,1));
         addTask = new JButton("Add Task");
         editTask = new JButton("Edit Task");
@@ -22,6 +22,7 @@ public class ButtonPanel extends JPanel{
         this.add(editTask);
         this.add(removeTask);
 
+        setButtonClick();
     }
 
 
@@ -34,9 +35,11 @@ public class ButtonPanel extends JPanel{
             public void actionPerformed(ActionEvent e){
                 if(e.getSource() == addTask){
                     System.out.println("Add task clicked");
+                    TaskInfoDialog tid = new TaskInfoDialog(taskCategory,false);
                 }
                 else if(e.getSource() == editTask){
                     System.out.println("Edit task clicked");
+                    TaskInfoDialog tid = new TaskInfoDialog(taskCategory,true);
                 }
                 else if(e.getSource() == removeTask){
                     System.out.println("Remove task clicked");

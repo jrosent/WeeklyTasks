@@ -35,6 +35,9 @@ public class Frame {
 
         width = w;
         height = h;
+
+        setUp();
+
         frame.setDefaultCloseOperation(WindowConstants.EXIT_ON_CLOSE);
         frame.setVisible(true);
     }
