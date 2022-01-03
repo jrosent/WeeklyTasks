@@ -9,12 +9,11 @@ import javax.swing.*;
  */
 public class ToDoPanel extends JPanel{
 
-    private ArrayList<Task> tasks;
     private JScrollPane taskScrollPane;
     private TaskTable taskTable;
+    private int taskNum = 0;
 
     public ToDoPanel(){
-        tasks = new ArrayList<>();
         taskTable = new TaskTable();
         taskScrollPane = new JScrollPane(taskTable);
         this.setLayout(new BorderLayout());
@@ -26,7 +25,6 @@ public class ToDoPanel extends JPanel{
      * @param task task to be added
      */
     public void addTask(Task task){
-        tasks.add(task);
         taskTable.addTask(task);
     }
 
@@ -35,8 +33,25 @@ public class ToDoPanel extends JPanel{
         return toMove;
     }
 
-    public Task getSelected(){
-        return taskTable.getSelected();
+    public void addNewTask(String desc, String due) {
+        Task t = new Task(taskNum, desc,due);
+        taskTable.addTask(t);
+        taskNum++;
     }
 
+    public void editTask(String desc, String due){
+        taskTable.editTask(desc,due);
+    }
+
+    public boolean setSelected(){
+        return taskTable.setSelected();
+    }
+
+    public String taskText(String text){
+        return taskTable.getInfo(text);
+    }
+
+    public void removeTask(){
+        taskTable.removeTask();
+    }
 }

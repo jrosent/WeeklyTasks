@@ -7,7 +7,7 @@ import java.awt.event.ActionListener;
 
 public class TaskInfoDialog extends JFrame {
 
-    private TaskCategory cat;
+    private ToDoPanel todo;
 
     private final JPanel dialog;
 
@@ -20,24 +20,30 @@ public class TaskInfoDialog extends JFrame {
     private final JButton submitButton;
     private final JButton cancelButton;
 
-    private JPanel buttonPanel;
-
     private final JCheckBox inProgress;
 
     private boolean edit;
 
-    public TaskInfoDialog(TaskCategory cat, boolean edit) {
-        this.cat = cat;
+    public TaskInfoDialog(ToDoPanel todo, boolean edit) {
+        this.todo = todo;
         this.edit = edit;
 
         dialog = new JPanel(new GridBagLayout());
         descLabel = new JLabel("Task Description: ");
-        descText = new JTextArea("Enter a description of the task.");
         dueLabel = new JLabel("Due Date:");
-        dueText = new JTextArea("Enter the due date.");
         submitButton = new JButton("Submit");
         cancelButton = new JButton("Cancel");
         inProgress = new JCheckBox("In Progress");
+
+        if(edit) {
+            descText = new JTextArea(todo.taskText("desc"));
+            dueText = new JTextArea(todo.taskText("date"));
+        }
+        else {
+            descText = new JTextArea("Enter a description of the task.");
+            dueText = new JTextArea("Enter the due date.");
+        }
+
 
         setUp();
         buttonListener();
@@ -145,10 +151,12 @@ public class TaskInfoDialog extends JFrame {
                     String desc = descText.getText();
                     String due = dueText.getText();
                     if(!edit) {
-                        cat.addNewTask(desc,due);
+                        todo.addNewTask(desc,due);
                         dispose();
                     }
                     else if(edit){
+                        todo.editTask(desc,due);
+                        todo.revalidate();
                         System.out.println("Editing task");
                     }
                 }

@@ -27,4 +27,9 @@ public class Task {
         return taskInfo;
     }
 
+    public void editTask(String desc, String due){
+        taskInfo[1] = desc;
+        taskInfo[2] = due;
+    }
+
 }

@@ -6,13 +6,13 @@ import java.awt.event.ActionEvent;
 import java.awt.event.ActionListener;
 
 public class ButtonPanel extends JPanel{
-    private TaskCategory taskCategory;
+    private ToDoPanel todo;
     private JButton addTask;
     private JButton editTask;
     private JButton removeTask;
 
-    public ButtonPanel(TaskCategory cat){
-        this.taskCategory = cat;
+    public ButtonPanel(ToDoPanel todo){
+        this.todo = todo;
         this.setLayout(new GridLayout(3,1));
         addTask = new JButton("Add Task");
         editTask = new JButton("Edit Task");
@@ -35,13 +35,18 @@ public class ButtonPanel extends JPanel{
             public void actionPerformed(ActionEvent e){
                 if(e.getSource() == addTask){
                     System.out.println("Add task clicked");
-                    TaskInfoDialog tid = new TaskInfoDialog(taskCategory,false);
+                    TaskInfoDialog tid = new TaskInfoDialog(todo,false);
                 }
-                else if(e.getSource() == editTask){
+                else if(e.getSource() == editTask) {
                     System.out.println("Edit task clicked");
-                    TaskInfoDialog tid = new TaskInfoDialog(taskCategory,true);
+                    if (todo.setSelected()){
+                        TaskInfoDialog tid = new TaskInfoDialog(todo, true);
+                    }
                 }
                 else if(e.getSource() == removeTask){
+                    if(todo.setSelected()){
+                        todo.removeTask();
+                    }
                     System.out.println("Remove task clicked");
                 }
             }
