@@ -235,8 +235,4 @@ public class TaskCategory extends JPanel {
         }
     }
 
-    public void addTask(Task task){
-        todo.addTask(task);
-    }
-
 }

@@ -49,6 +49,9 @@ public class TaskInfoDialog extends JFrame {
         buttonListener();
     }
 
+    /**
+     * Formats the Frame
+     */
     public void setUp() {
         //Grid bag coordinates
         int leftStrutX = 0;
@@ -143,6 +146,9 @@ public class TaskInfoDialog extends JFrame {
         submitButton.requestFocusInWindow();
     }
 
+    /**
+     * Creates functionality for the buttons in the frame
+     */
     public void buttonListener() {
         ActionListener click = new ActionListener() {
             @Override

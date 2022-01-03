@@ -85,6 +85,10 @@ public class TaskTable extends JTable {
         return selected;
     }
 
+    /**
+     * Sets selectedIndex to the value of the selected row in the table.
+     * @return true if a row is selected, false if not
+     */
     public boolean setSelected(){
         selectedRow = getSelectedRow();
         if(selectedRow >= 0) {
@@ -96,6 +100,11 @@ public class TaskTable extends JTable {
         }
     }
 
+    /**
+     * Edits the information stored in a task and in the task table.
+     * @param desc new description for a task
+     * @param date new due date for a task
+     */
     public void editTask(String desc, String date){
         if(selectedRow >= 0) {
             model.setValueAt(desc, selectedRow, DESCINDEX);
@@ -109,6 +118,11 @@ public class TaskTable extends JTable {
         revalidate();
     }
 
+    /**
+     * Gets information about a task in the table.
+     * @param text String specifying the desired information
+     * @return String containing the desired information
+     */
     public String getInfo(String text){
        String temp;
        switch(text){
