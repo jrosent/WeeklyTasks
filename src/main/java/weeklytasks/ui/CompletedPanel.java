@@ -6,31 +6,26 @@ import javax.swing.*;
 
 public class CompletedPanel extends JPanel{
 
-    private ArrayList<TaskCategory> taskCatagories;
-    private JLabel todo = new JLabel("COMPLETED");
-    GridBagSetUp gc = new GridBagSetUp();
+    private ArrayList<Task> tasks;
+    private JScrollPane taskScrollPane;
+    private CompletedTaskTable taskTable;
+    int selected;
 
     public CompletedPanel(){
-        taskCatagories = new ArrayList<>();
-        todo.setFont(new Font("Times New Roman", Font.BOLD, 26));
-        todo.setHorizontalAlignment(JLabel.CENTER);
-        this.setLayout(new GridBagLayout());
-        gc.setUpGridBag(1,.01,0,0,GridBagConstraints.HORIZONTAL,GridBagConstraints.NORTH);
-        this.add(todo,gc);
-        this.addTaskCatagory("Tasks");
-
+        tasks = new ArrayList<>();
+        taskTable = new CompletedTaskTable();
+        taskScrollPane = new JScrollPane(taskTable);
+        this.setLayout(new BorderLayout());
+        this.add(taskScrollPane,BorderLayout.CENTER);
     }
 
     /**
-     * Add a category to the ArrayList of categories to hold tasks
-     * @param title title of the task category
+     * Adds a new task to this completed panel.
+     * @param task task to be added to the panel
      */
-    public void addTaskCatagory(String title){
-        TaskCategory tc = new TaskCategory(title);
-        taskCatagories.add(tc);
-        gc.setUpGridBag(1,1,0,taskCatagories.size(),GridBagConstraints.BOTH);
-        this.add(tc,gc);
+    public void addTask(Task task){
+        tasks.add(task);
+        taskTable.addTask(task);
     }
-
 }
 
